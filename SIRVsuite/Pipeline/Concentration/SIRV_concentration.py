@@ -220,10 +220,12 @@ class SIRVsuiteConcentration():
         ax1.plot([1,1],[0,len(relative_abundance) + 1], color = 'darkblue', alpha = .6)
         ax1.set_ylim([0,len(relative_abundance)+1])
 
+        try:
+            limit_x = heatmap_matrix.max()
 
-        limit_x = heatmap_matrix.max()
-
-        ax1.set_xlim([np.min(relative_conc)-np.min(relative_conc)*0.8,limit_x])
+            ax1.set_xlim([np.min(relative_conc)-np.min(relative_conc)*0.8,limit_x])
+        except ValueError:
+            pass
         
         ax1.set_yticklabels(relative_abundance.keys())
         plt.xlabel("relative SIRV transcript concentration")
